@@ -1,0 +1,51 @@
+﻿@model BL.Alumno
+@{
+    ViewBag.Title = "GetAllAlumno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+   
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Seleccione un Alumno para editarlo o + para agregar...</h5>
+            <hr />
+        </div>
+    </div>
+    <div style="float:right;">
+        @Html.ActionLink("+", "Form", "MateriaAsignada", htmlAttributes: new { @class = "btn btn-success" })
+    </div>
+    <br />
+    <table class="table   table-hover table-bordered table-responsive ">
+        <thead>
+            <tr class="table-secondary">
+                <td>Editar</td>
+                <td style="display :none;">id</td>
+                <td>Nombre</td>
+                <td>Apellido Paterno</td>
+                <td>Apellido Materno</td>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (BL.Alumno alumno in Model.Alumnos)
+            {
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;"><a class="btn btn-info glyphicon" href="@Url.Action("GetAllMateriaAsignada", "MateriaAsignada", new { IdAlumno = alumno.IdAlumno, Nombre = alumno.Nombre, ApellidoPaterno= alumno.ApellidoPaterno, ApellidoMaterno = alumno.ApellidoMaterno })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
+                    <td style="display :none;">@alumno.IdAlumno  </td>
+                    <td>@alumno.Nombre </td>
+                    <td>@alumno.ApellidoPaterno </td>
+                    <td>@alumno.ApellidoMaterno </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+
+

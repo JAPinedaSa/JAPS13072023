@@ -116,6 +116,7 @@ namespace BL
                                 materia.IdMateria = int.Parse(row[0].ToString());
                                 materia.Nombre = row[1].ToString();
                                 materia.Costo = decimal.Parse(row[2].ToString());
+                                
 
                                 result.Object = materia;
 
@@ -173,7 +174,7 @@ namespace BL
                         collection[0] = new SqlParameter("Nombre", SqlDbType.VarChar);
                         collection[0].Value = materia.Nombre;
 
-                        collection[1] = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
+                        collection[1] = new SqlParameter("Costo", SqlDbType.VarChar);
                         collection[1].Value = materia.Costo;
 
 

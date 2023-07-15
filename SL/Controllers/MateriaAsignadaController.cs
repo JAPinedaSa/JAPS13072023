@@ -19,7 +19,7 @@ namespace SL.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -39,7 +39,7 @@ namespace SL.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -60,7 +60,7 @@ namespace SL.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -84,7 +84,7 @@ namespace SL.Controllers
             BL.Result result = BL.MateriaAsignada.Add(materiaAsignada);
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -109,7 +109,7 @@ namespace SL.Controllers
             BL.Result result = BL.MateriaAsignada.Delete(borrarMaterias);
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {

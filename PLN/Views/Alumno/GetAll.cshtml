@@ -1,0 +1,63 @@
+﻿@model BL.Alumno
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class=row>
+        <div class="text-center">
+            <h2>Alumnos</h2>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Seleccione un Alumno para editarlo o + para agregar...</h5>
+            <hr />
+        </div>
+    </div>
+    <div style="float:right;">
+        @Html.ActionLink("+", "Form", "Alumno", htmlAttributes: new { @class = "btn btn-success" })
+    </div>
+    <br />
+    <table class="table   table-hover table-bordered table-responsive ">
+        <thead>
+            <tr class="table-secondary">
+                <td>Editar</td>
+                <td style="display :none;">id</td>
+                <td>Nombre</td>
+                <td>Apellido Paterno</td>
+                <td>Apellido Materno</td>
+                <td>Foto</td>
+                <td>Eliminar</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (BL.Alumno alumno in Model.Alumnos)
+            {
+                <tr>
+                    <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning glyphicon" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno })"><i class="bi bi-pencil-square" style="color: ivory"></i>Editar</a></td>
+                    <td style="display :none;">@alumno.IdAlumno  </td>
+                    <td>@alumno.Nombre </td>
+                    <td>@alumno.ApellidoPaterno </td>
+                    <td>@alumno.ApellidoMaterno </td>
+                    @if (alumno.Imagen == null || alumno.Imagen == "")
+                    {
+                        <td class="text-center"><img src="https://www.softzone.es/app/uploads-softzone.es/2018/04/guest.png" width="50px" height="50px" /></td>
+                    }
+                    else
+                    {
+                        <td class="text-center"> <img id="Img" src="data:image/*;base64,@alumno.Imagen" style="width:50px ; height:50px" /></td>
+                    }
+                    <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Alumno", new {  IdAlumno = alumno.IdAlumno })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');">Eliminar</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+

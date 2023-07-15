@@ -19,7 +19,7 @@ namespace SL.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -39,12 +39,38 @@ namespace SL.Controllers
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
                 return NotFound(result.ErrorMessage);
             }
+        }
+
+        [HttpGet]
+        [Route("api/Alumno/GetbyNombre/{Nombre}/{ApellidoPaterno}")]
+        public IActionResult GetbyUserName(string nombre, string apellidoPaterno)
+        {
+            BL.Result result = BL.Alumno.GetByNombre(nombre);
+            if (result.Correct)
+            {
+                BL.Alumno alumno = (BL.Alumno)result.Object;
+
+                if (alumno.ApellidoPaterno == apellidoPaterno)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return Unauthorized(result.ErrorMessage = "La Contraseña es incorrecta");
+                }
+
+            }
+            else
+            {
+                return Unauthorized(result.ErrorMessage = "El usuario no exxiste o esta mal escrito");
+            }
+
         }
 
         //--------------------------------------------------------------------------------------
@@ -61,7 +87,7 @@ namespace SL.Controllers
             BL.Result result = BL.Alumno.Add(alumno);
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -80,13 +106,11 @@ namespace SL.Controllers
             alumno.IdAlumno = IdAlumno;
 
             BL.Result result = BL.Alumno.Update(alumno);
-            //ML.Result result1 = BL.Materia.Update(materia);
-            //ML.Result result2 = BL.Materia.Update(materia);
-            //ML.Result result3 = BL.Materia.Update(materia);
+            
 
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
@@ -100,7 +124,6 @@ namespace SL.Controllers
 
         //Servicios Delete
 
-
         /* Este servicio permite acceder al metodo Delete de la entidad materias que se encuentra
          en la Capa de Negocios (BL) enviando un parametro , que es proporcionado por el usuario*/
         [HttpDelete]
@@ -110,7 +133,7 @@ namespace SL.Controllers
             BL.Result result = BL.Materia.Delete(IdAlumno);
             if (result.Correct)
             {
-                return Ok(result.Objects);
+                return Ok(result);
             }
             else
             {
