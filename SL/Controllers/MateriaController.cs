@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SL.Controllers
 {
-    public class MateriaController : Controller
+    public class MateriaController : ControllerBase
     {
 
         //Servicios Web Arquitectura REST
@@ -59,6 +59,7 @@ namespace SL.Controllers
          dentro de la Capa de negocios(BL) enviando un modelo proporcionado por el usuario desde
         la interfaz o por el desarrollador desde un entorno de puebas(Postman o Swagger)*/
         [EnableCors("AccesoCore")]
+        //[HttpPost("api/Materia/Add")]
         [HttpPost]
         [Route("api/Materia/Add")]
         public IActionResult Add([FromBody] BL.Materia materia)

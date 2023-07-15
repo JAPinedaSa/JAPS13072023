@@ -44,11 +44,17 @@ function CerrarModal() {
 function Modal() {
     var id = $("#txtIdMateria").val()
     console.log(id)
-    if ($("#txtIdMateria").val() == 0) {
-        Add();
+    var materia = {
+
+        Nombre: $('#txtNombre').val(),
+        Costo: $('#txtCosto').val(),
+
+    }
+    if ($("#txtIdMateria").val() == "") {
+        Add(materia);
     }
     else {
-        Update();
+        Update(materia);
     }
 }
 function GetById(idMateria) {
@@ -86,18 +92,14 @@ function Eliminar(IdEmpleado) {
     };
 }
 
-function Add() {
-    var materia = {
-        
-        Nombre: $('#txtNombre').val(),
-        Costo: $('#txtCosto').val(),
-        
-    }
+function Add(materia) {
+    
     $.ajax({
         type: 'POST',
         url: 'http://localhost:5108/api/Materia/Add',
         dataType: 'json',
-        data: materia,
+        data: JSON.stringify(materia),
+        contentType: 'aplication/json; charset=utf-8',
         success: function (result) {
             alert('Se Ingreso Correctamente el empleado');
             $('#modal').modal();
