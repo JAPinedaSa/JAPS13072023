@@ -1,16 +1,19 @@
 ﻿
+
+var URL = 'http://localhost:5108/api/';
 //Funcion Callback  que iniciara el GetAll() una vez que la pagina haya cargado por completo
 $(document).ready(function () {
     GetAll();
    
 })
 
+
 /*Funcion  que accede al servicio web GetAll, crea elementos TD en html para llenar la tabla
     "Materia que existe en la vista GetAll()"*/
 function GetAll() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:5108/api/Materia/GetAll',
+        url: URL + 'Materia/GetAll',
 
         success: function (result) {
             $('#Materia tbody').empty();
@@ -60,7 +63,7 @@ function Modal() {
 function GetById(idMateria) {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:5108/api/Materia/GetById/' + idMateria,
+        url: URL +'Materia/GetById/' + idMateria,
         success: function (Result) {
             $('#txtIdMateria').val(Result.object.idMateria);
             $('#txtNombre').val(Result.object.nombre);
@@ -74,12 +77,12 @@ function GetById(idMateria) {
     });
 }
 
-function Eliminar(IdEmpleado) {
+function Eliminar(IdMateria) {
 
-    if (confirm("¿Estas seguro de eliminar el empleado seleccionado?")) {
+    if (confirm("¿Estas seguro de eliminar la materia seleccionadoa?")) {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:5108/api/Materia/Delete/' + idMateria,
+            url: URL +'Materia/Delete/' + idMateria,
             success: function (result) {
                 $('#modal').modal();
                 GetAll();
@@ -96,7 +99,7 @@ function Add(materia) {
     
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:5108/api/Materia/Add',
+        url: URL + 'Materia/Add',
         dataType: 'json',
         data: JSON.stringify(materia),
         contentType: 'aplication/json; charset=utf-8',
@@ -119,7 +122,7 @@ function Update(idMateria) {
     }
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:5108/api/Materia/Update' + idMateria,
+        url: URL + 'Materia/Update' + idMateria,
         dataType: 'json',
         data: materia,
         success: function (result) {
