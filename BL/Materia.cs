@@ -228,11 +228,14 @@ namespace BL
                         SqlParameter[] collection = new SqlParameter[3];
 
 
-                        collection[0] = new SqlParameter("Nombre", SqlDbType.VarChar);
-                        collection[0].Value = materia.Nombre;
+                        collection[0] = new SqlParameter("IdMateria", SqlDbType.VarChar);
+                        collection[0].Value = materia.IdMateria;
 
-                        collection[1] = new SqlParameter("ApellidoPaterno", SqlDbType.VarChar);
-                        collection[1].Value = materia.Costo;
+                        collection[1] = new SqlParameter("Nombre", SqlDbType.VarChar);
+                        collection[1].Value = materia.Nombre;
+
+                        collection[2] = new SqlParameter("Costo", SqlDbType.VarChar);
+                        collection[2].Value = materia.Costo;
 
                    
 

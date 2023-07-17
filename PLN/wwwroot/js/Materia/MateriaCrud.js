@@ -37,10 +37,16 @@ function GetAll() {
 
 function AbrirModal() {
     $("#modalPromociones").modal("show");
+    $('#txtIdMateria').val("");
+    $('#txtNombre').val("");
+    $('#txtCosto').val("");
 }
 
 function CerrarModal() {
     $('#modalPromociones').modal('hide');
+    $('#txtIdMateria').val("");
+    $('#txtNombre').val("");
+    $('#txtCosto').val("");
    
 }
 
@@ -48,12 +54,14 @@ function Modal() {
     var id = $("#txtIdMateria").val()
     console.log(id)
     var materia = {
-
+        IdMateria: $('#txtIdMateria').val(),
         Nombre: $('#txtNombre').val(),
         Costo: $('#txtCosto').val(),
 
+
     }
     if ($("#txtIdMateria").val() == "") {
+        materia.IdMateria = 0
         Add(materia);
     }
     else {
@@ -77,11 +85,11 @@ function GetById(idMateria) {
     });
 }
 
-function Eliminar(IdMateria) {
+function Eliminar(idMateria) {
 
     if (confirm("¿Estas seguro de eliminar la materia seleccionadoa?")) {
         $.ajax({
-            type: 'GET',
+            type: 'DELETE',
             url: URL +'Materia/Delete/' + idMateria,
             success: function (result) {
                 $('#modal').modal();
@@ -99,38 +107,51 @@ function Add(materia) {
     
     $.ajax({
         type: 'POST',
-        url: URL + 'Materia/Add',
+        url: 'http://localhost:5108/api/Materia/Add',
         dataType: 'json',
         data: JSON.stringify(materia),
-        contentType: 'aplication/json; charset=utf-8',
+        contentType: 'application/json; charset=utf-8',
         success: function (result) {
             alert('Se Ingreso Correctamente el empleado');
             $('#modal').modal();
+            $('#txtIdMateria').val("");
+            $('#txtNombre').val("");
+            $('#txtCosto').val("");
+            GetAll();
+            CerrarModal();
         },
         error: function (result) {
-            alert('Error en la consulta.' + result.responseJSON.ErrorMessage);
+            $('#txtIdMateria').val("");
+            $('#txtNombre').val("");
+            $('#txtCosto').val("");
+            alert('Error en la consulta.');
+
         }
     });
 }
 
-function Update(idMateria) {
-    var materia = {
-        
-        Nombre: $('#txtNombre').val(),
-        Costo: $('#txtCosto').val(),
+function Update(materia) {
+    
 
-    }
     $.ajax({
         type: 'POST',
-        url: URL + 'Materia/Update' + idMateria,
+        url: 'http://localhost:5108/api/Materia/Update/' + materia.idMateria,
         dataType: 'json',
-        data: materia,
+        data: JSON.stringify(materia),
+        contentType: 'application/json; charset=utf-8',
         success: function (result) {
             alert('Se actualizo corretamente el empleado');
             $('#modal').modal();
+            $('#txtIdMateria').val("");
+            $('#txtNombre').val("");
+            $('#txtCosto').val("");
+            GetAll();
+            CerrarModal();
         },
         error: function (result) {
-            alert('Error en la consulta.' + result.responseJSON.ErrorMessage);
+            
+            alert('Error en la consulta.');
+           
         }
     });
 }

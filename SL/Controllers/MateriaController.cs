@@ -85,7 +85,7 @@ namespace SL.Controllers
         [Route("api/Materia/Update/{IdMateria}")]
         public IActionResult Update(int IdMateria, [FromBody] BL.Materia materia)
         {
-            materia.IdMateria = IdMateria;
+            
 
             BL.Result result = BL.Materia.Update(materia);
             //ML.Result result1 = BL.Materia.Update(materia);

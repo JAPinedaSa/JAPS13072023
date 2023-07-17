@@ -6,16 +6,26 @@
 
 <div class="container">
    
+    <div class=row>
+        <div class="text-center">
+            <h2>Asignar Materias</h2>
+
+        </div>
+    </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <h5>Seleccione un Alumno para editarlo o + para agregar...</h5>
+        <div class="col-md-12 text-center">
+            <h5>Seleccione un Alumno para ver sus materias asignadas</h5>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h6> Control de alumnos disponibles para asignación de materias</h6>
             <hr />
         </div>
     </div>
-    <div style="float:right;">
-        @Html.ActionLink("+", "Form", "MateriaAsignada", htmlAttributes: new { @class = "btn btn-success" })
-    </div>
+    
     <br />
     <table class="table   table-hover table-bordered table-responsive ">
         <thead>
