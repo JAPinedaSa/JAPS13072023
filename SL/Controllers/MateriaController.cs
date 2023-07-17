@@ -87,9 +87,7 @@ namespace SL.Controllers
         {   
 
             BL.Result result = BL.Materia.Update(materia);
-            //ML.Result result1 = BL.Materia.Update(materia);
-            //ML.Result result2 = BL.Materia.Update(materia);
-            //ML.Result result3 = BL.Materia.Update(materia);
+            
 
             if (result.Correct)
             {
