@@ -112,7 +112,7 @@ function Add(materia) {
         data: JSON.stringify(materia),
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
-            alert('Se Ingreso Correctamente el empleado');
+            alert('Se Ingreso Correctamente la materia');
             $('#modal').modal();
             $('#txtIdMateria').val("");
             $('#txtNombre').val("");
@@ -140,7 +140,7 @@ function Update(materia) {
         data: JSON.stringify(materia),
         contentType: 'application/json; charset=utf-8',
         success: function (result) {
-            alert('Se actualizo corretamente el empleado');
+            alert('Se actualizo corretamente la materia');
             $('#modal').modal();
             $('#txtIdMateria').val("");
             $('#txtNombre').val("");
